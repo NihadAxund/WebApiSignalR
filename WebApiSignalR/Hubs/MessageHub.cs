@@ -24,16 +24,13 @@ namespace WebApiSignalR.Hubs
             {
                 lock (groupList)
                 {
-                    
                     if (groupList.Contains(disconId))
                     {
                         groupList.Remove(disconId);
                         return;
                     }
                 }
-               
             });
-
             await base.OnDisconnectedAsync(exception);
         }
         public async Task SendMessage(string message)
@@ -75,10 +72,7 @@ namespace WebApiSignalR.Hubs
 
         public async Task< List<GroupType>> GetRooms() {
             List<GroupType> list = new();
-            foreach (var data in groups)
-            {
-                list.Add(new GroupType(data.Key, data.Value.Count,FileHelper.Read(data.Key)));
-            }
+            foreach (var data in groups) { list.Add(new GroupType(data.Key, data.Value.Count,FileHelper.Read(data.Key)));}
             return list;
         
         }

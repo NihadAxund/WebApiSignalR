@@ -15,28 +15,19 @@ namespace WebApiSignalR.Controllers
         {
             this.messageHub = messageHub;
             if (!System.IO.File.Exists("mercedes.txt"))
-            {
                 FileHelper.Write("mercedes",5000);
-            }
             if (!System.IO.File.Exists("chevrolet.txt"))
-            {
                 FileHelper.Write("chevrolet",1300);
-            }
+            
         }
 
         [HttpGet]
-        public double Get()
-        {
-            //messageHub.Clients.All.SendOffersToUser(data);
-            return FileHelper.Read();
-        }
+        public double Get() => FileHelper.Read();
+        
 
         [HttpGet("/Room")]
-        public double GetRoom(string room)
-        {
-            //messageHub.Clients.All.SendOffersToUser(data);
-            return FileHelper.Read(room);
-        }
+        public double GetRoom(string room) => FileHelper.Read(room);
+        
 
         [HttpGet("/Increase")]
         public async void Get(double number)
